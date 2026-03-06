@@ -3084,7 +3084,12 @@ function replayCurrentFlow() {
   var mods = body ? {body:body} : {};
   api('/api/traffic/replay','POST',{sessionId:TR_SESSION,flowId:TR_CURRENT_FLOW,modifications:mods}).then(function(d) {
     if (d && d.ok) {
-      document.getElementById('tr-resp-body').textContent = 'REPLAY RESPONSE:\nStatus: '+d.status+'\n\n'+JSON.stringify(d.headers,null,2)+'\n\n'+d.body;
+      document.getElementById('tr-resp-body').textContent = `REPLAY RESPONSE:
+Status: ${d.status}
+
+${JSON.stringify(d.headers,null,2)}
+
+${d.body}`;
       toast('Replayed! Status: '+d.status, d.status<400?'ok':'warn');
     } else toast('Replay failed: '+(d&&d.error||'unknown'),'err');
   });
@@ -3351,7 +3356,7 @@ function runAutoPatcher() {
       let url = window.URL.createObjectURL(blob);
       let a = document.createElement('a');
       a.href = url;
-      a.download = f.name.replace(/\.[^/.]+$/, "") + "-patched" + f.name.substring(f.name.lastIndexOf('.'));
+      a.download = f.name.replace(/\\.[^/.]+$/, "") + "-patched" + f.name.substring(f.name.lastIndexOf('.'));
       document.body.appendChild(a);
       a.click();
       a.remove();
