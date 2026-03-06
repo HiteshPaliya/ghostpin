@@ -27,7 +27,32 @@ HTML = """<!DOCTYPE html>
   --mono:'JetBrains Mono','Cascadia Code','Fira Code','Consolas','Courier New',monospace;
   --sans:'Syne','Inter','Segoe UI','Helvetica Neue',system-ui,sans-serif;
   --nav:58px;--side:252px;--top:50px;--r:8px;--rl:14px;
+  --theme-transition: background-color .2s ease,color .2s ease,border-color .2s ease,box-shadow .2s ease;
 }
+
+/* ── LIGHT MODE OVERRIDES ────────────────────────────────────── */
+[data-theme="light"]{
+  --ink:#f0f2fa;--ink1:#e8eaf5;--ink2:#dfe2f0;--ink3:#d4d8eb;--ink4:#c8cde3;--ink5:#bdc2db;
+  --rim:#c4c9e0;--rim2:#b0b6d0;--rim3:#9aa1bf;
+  --lime:#4a8a00;--lime2:#3d7200;--lime3:#b8ff47;
+  --limebg:rgba(74,138,0,.09);--limeglow:0 0 20px rgba(74,138,0,.18);
+  --cyan:#0080a0;--cyanbg:rgba(0,128,160,.08);
+  --red:#c42040;--redbg:rgba(196,32,64,.08);
+  --amber:#b06000;--amberbg:rgba(176,96,0,.08);
+  --mint:#008855;--mintbg:rgba(0,136,85,.08);
+  --violet:#6030b8;--violetbg:rgba(96,48,184,.08);
+  --txt:#1a1e38;--txt2:#383e62;--txt3:#6870a0;--txt4:#b0b8d8;
+}
+[data-theme="light"] *,[data-theme="light"] *::before,[data-theme="light"] *::after{
+  transition:var(--theme-transition);
+}
+[data-theme="light"] code{background:rgba(74,138,0,.1);}
+[data-theme="light"] .logo-box{filter:none;}
+[data-theme="light"] .term{background:#1a1e38;border-color:#2a2e50;}
+[data-theme="light"] .term-hd{background:#13162e;border-color:#2a2e50;}
+[data-theme="light"] .ca{background:#1a1e38;color:#d8e0f4;border-color:#2a2e50;}
+[data-theme="light"] .ca:focus{border-color:var(--lime);}
+
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html,body{height:100%;overflow:hidden;background:var(--ink);color:var(--txt);font-family:var(--mono);font-size:13px;-webkit-font-smoothing:antialiased;}
 ::-webkit-scrollbar{width:4px;height:4px;}
@@ -43,6 +68,8 @@ html,body{height:100%;overflow:hidden;background:var(--ink);color:var(--txt);fon
 .brand{font-family:var(--sans);font-size:15px;font-weight:800;letter-spacing:-.3px;}
 .brand b{color:var(--lime);}
 .ver-tag{font-size:10px;color:var(--txt3);background:var(--ink3);padding:2px 8px;border-radius:4px;border:1px solid var(--rim);letter-spacing:.5px;flex-shrink:0;}
+.theme-btn{width:32px;height:32px;border-radius:8px;border:1px solid var(--rim2);background:var(--ink3);color:var(--txt2);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;transition:all .15s;}
+.theme-btn:hover{background:var(--ink4);color:var(--txt);border-color:var(--rim3);}
 .sep{width:1px;height:20px;background:var(--rim);flex-shrink:0;}
 .tb-page{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--txt2);}
 .flex1{flex:1;}
@@ -329,6 +356,7 @@ code{font-family:var(--mono);font-size:11px;background:rgba(184,255,71,.07);colo
   <div class="sep"></div>
   <div class="tb-page" id="tb-title">Dashboard</div>
   <div class="flex1"></div>
+  <button class="theme-btn" id="theme-btn" onclick="toggleTheme()" title="Toggle light / dark mode">&#9790;</button>
   <div class="sb sb-off" id="sb-dev"><div class="sb-dot"></div><span id="sb-dev-t">No Devices</span></div>
   <div class="sb sb-off" id="sb-fri"><div class="sb-dot"></div><span id="sb-fri-t">Frida Off</span></div>
   <div class="sb sb-off" id="sb-sess"><div class="sb-dot"></div><span id="sb-sess-t">No Session</span></div>
@@ -1622,6 +1650,32 @@ function go(id) {
   if (id === 'editor') populateEditorSel();
   if (id === 'bypass') renderBpGrid();
 }
+
+// ── Theme ──────────────────────────────────────────────────────
+function toggleTheme() {
+  var isLight = document.documentElement.getAttribute('data-theme') === 'light';
+  var next = isLight ? 'dark' : 'light';
+  applyTheme(next);
+  try { localStorage.setItem('gp-theme', next); } catch(e) {}
+}
+function applyTheme(t) {
+  var btn = document.getElementById('theme-btn');
+  if (t === 'light') {
+    document.documentElement.setAttribute('data-theme', 'light');
+    if (btn) btn.innerHTML = '&#9728;'; // ☀ sun = currently light, click for dark
+    if (btn) btn.title = 'Switch to dark mode';
+  } else {
+    document.documentElement.removeAttribute('data-theme');
+    if (btn) btn.innerHTML = '&#9790;'; // ☾ moon = currently dark, click for light
+    if (btn) btn.title = 'Switch to light mode';
+  }
+}
+(function() {
+  try {
+    var saved = localStorage.getItem('gp-theme');
+    if (saved === 'light') document.documentElement.setAttribute('data-theme', 'light');
+  } catch(e) {}
+})();
 
 // ── Toast ──────────────────────────────────────────────────────
 function toast(msg, type) {
