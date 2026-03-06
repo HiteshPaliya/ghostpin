@@ -1,4 +1,4 @@
-# 🔐 GhostPin Enterprise v5.0 — *Phantom*
+# 🔐 GhostPin — *Phantom*
 
 > **The most complete mobile SSL pinning bypass and security research platform available.**
 > Android + iOS · Frida-powered · 17 bypass scripts · 10 security research pillars · Stealth Evasion Core · Coverage-Guided Fuzzing · CLI + Web UI
@@ -282,7 +282,7 @@ ghostpin/
 
 ## 🔐 Legal Notice
 
-GhostPin Enterprise is provided for **authorized security testing only**.
+GhostPin is provided for **authorized security testing only**.
 Unauthorized use against applications or devices you do not own or have explicit written permission to test is illegal under the Computer Fraud and Abuse Act (CFAA), Computer Misuse Act (CMA), and equivalent laws worldwide.
 
 The authors accept no liability for misuse.
