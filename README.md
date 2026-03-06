@@ -23,7 +23,7 @@ GhostPin requires zero manual configuration out of the box. A single install scr
 
 ```bash
 # 1. Install from source (downloads Flask, click, frida, objection, mitmproxy)
-cd ghostpin-enterprise-v4.1/ghostpin
+cd ghostpin/
 pip install -e .
 
 # 2. Check dependencies
