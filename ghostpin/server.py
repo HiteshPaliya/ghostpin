@@ -191,22 +191,59 @@ def create_app():
             response.headers['Content-Length'] = len(compressed)
         return response
 
+# ── Load HTML once at startup (not on every request) ────────────
+def _load_html() -> str:
+    """Load server_html.py once and cache it. Re-importing on every
+    request re-executes the 3500-line module, fires SyntaxWarnings,
+    and causes overhead per page load on slow filesystems (e.g. WSL2)."""
+    try:
+        from server_html import HTML
+        return HTML
+    except ImportError:
+        pass
+    html_path = Path(__file__).parent.parent / 'server_html.py'
+    if html_path.exists():
+        import importlib.util
+        spec = importlib.util.spec_from_file_location('server_html', html_path)
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        return mod.HTML
+    return '<h1>GhostPin v5</h1><p>server_html.py not found</p>'
+
+_HTML_CACHE: str = ''  # populated once in create_app()
+
+def create_app():
+    global _HTML_CACHE
+    _HTML_CACHE = _load_html()  # execute once at startup
+
+    app = Flask(__name__)
+    app.secret_key = _get_or_create_secret_key()
+
+    # ── Gzip compression middleware ──────────────────────────────
+    import gzip as _gzip
+    @app.after_request
+    def compress_response(response):
+        accept = request.headers.get('Accept-Encoding', '')
+        if 'gzip' not in accept:
+            return response
+        if response.status_code < 200 or response.status_code >= 300:
+            return response
+        if response.content_length and response.content_length < 500:
+            return response
+        if response.direct_passthrough:
+            return response
+        data = response.get_data()
+        compressed = _gzip.compress(data, compresslevel=6)
+        if len(compressed) < len(data):
+            response.set_data(compressed)
+            response.headers['Content-Encoding'] = 'gzip'
+            response.headers['Content-Length'] = len(compressed)
+        return response
+
     # ── Core routes ─────────────────────────────────────────
     @app.route('/')
     def index():
-        try:
-            from server_html import HTML
-            return HTML
-        except ImportError:
-            # Try package path
-            html_path = Path(__file__).parent.parent / 'server_html.py'
-            if html_path.exists():
-                import importlib.util
-                spec = importlib.util.spec_from_file_location('server_html', html_path)
-                mod = importlib.util.module_from_spec(spec)
-                spec.loader.exec_module(mod)
-                return mod.HTML
-            return '<h1>GhostPin v5</h1><p>server_html.py not found</p>', 200
+        return Response(_HTML_CACHE, mimetype='text/html; charset=utf-8')
 
     @app.route('/api/devices')
     def api_devices():
