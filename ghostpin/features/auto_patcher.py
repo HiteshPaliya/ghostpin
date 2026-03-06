@@ -1,5 +1,5 @@
 """
-GhostPin Enterprise v5 - Auto-Patcher
+GhostPin v5 - Auto-Patcher
 Automatically patch APKs and IPAs with apk-mitm for non-rooted network bypass and Frida gadget injection.
 """
 import subprocess

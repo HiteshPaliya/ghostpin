@@ -102,7 +102,7 @@ LOGIN_HTML = """<!DOCTYPE html>
 <body>
 <div class="card">
   <div class="logo">🔐</div>
-  <h1>GhostPin Enterprise</h1>
+  <h1>GhostPin</h1>
   <div class="sub">v5.0 — Enter your PIN to continue</div>
   <form onsubmit="doLogin(event)">
     <input type="password" id="pin" placeholder="• • • • • •" maxlength="12" autofocus>

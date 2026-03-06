@@ -1,4 +1,4 @@
-// GhostPin Enterprise v5.0 — React Native / Hermes Bypass
+// GhostPin v5.0 — React Native / Hermes Bypass
 // Targets Hermes JS engine bundled fetch(), XMLHttpRequest, and Metro dev checks
 
 (function() {

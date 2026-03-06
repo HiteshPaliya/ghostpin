@@ -1,5 +1,5 @@
 """
-GhostPin Enterprise v5 — Coverage-Guided Fuzzer Orchestrator
+GhostPin v5 — Coverage-Guided Fuzzer Orchestrator
 Uses Frida Stalker to trace code coverage per fuzz payload, then
 mutates payloads that produce new coverage (AFL++ feedback loop design).
 """

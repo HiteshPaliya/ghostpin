@@ -1,5 +1,5 @@
 """
-GhostPin Enterprise v5 - AI Analyzer Module
+GhostPin v5 - AI Analyzer Module
 Handles LLM integration for automatically explaining vulnerabilities and providing mitigation code.
 Uses Google's Gemini API if configured, otherwise falls back to a locally hosted LLM or returns a generic analysis.
 """

@@ -1,5 +1,5 @@
 """
-GhostPin Enterprise v5.0 — Core: ADB Helpers
+GhostPin v5.0 — Core: ADB Helpers
 """
 import re, subprocess
 from typing import Optional

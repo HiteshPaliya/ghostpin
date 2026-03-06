@@ -1,4 +1,4 @@
-# 📚 GhostPin Enterprise — Security Guide
+# 📚 GhostPin — Security Guide
 ### *For people who are just starting to learn mobile application security*
 
 > This guide explains every GhostPin feature from first principles: what the vulnerability is, why it matters, how to test for it, how to confirm findings manually, and what happens to an organization if the vulnerability is real.
@@ -617,4 +617,4 @@ For mobile findings, typical CVSS 3.1 base scores:
 
 ---
 
-*GhostPin Enterprise v5.0 — For authorized penetration testing only*
+*GhostPin v5.0 — For authorized penetration testing only*

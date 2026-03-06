@@ -1,5 +1,5 @@
 """
-GhostPin Enterprise v5 - iOS Static Analyzer
+GhostPin v5 - iOS Static Analyzer
 Unpacks IPAs and analyzes Info.plist for common security misconfigurations.
 """
 import os

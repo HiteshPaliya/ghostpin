@@ -1,5 +1,5 @@
 /**
- * GhostPin Enterprise v5 — Coverage-Guided Fuzzer (Frida Stalker)
+ * GhostPin v5 — Coverage-Guided Fuzzer (Frida Stalker)
  * Traces execution of basic blocks when a fuzz payload is delivered.
  * Reports back the set of blocks covered so the Python orchestrator can
  * decide whether to mutate the payload further.

@@ -1,5 +1,5 @@
 """
-GhostPin Enterprise v5.0 — Web UI HTML
+GhostPin v5.0 — Web UI HTML
 Single-file, self-contained frontend for the GhostPin platform.
 """
 
@@ -8,9 +8,10 @@ HTML = """<!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>GhostPin Enterprise</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<title>GhostPin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Syne:wght@400;600;700;800&display=swap" as="style" onload="this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Syne:wght@400;600;700;800&display=swap"></noscript>
 <style>
 :root{
   --ink:#080b12;--ink1:#0d1018;--ink2:#111520;--ink3:#171c29;--ink4:#1d2333;--ink5:#232a3e;
@@ -23,8 +24,8 @@ HTML = """<!DOCTYPE html>
   --mint:#2effa0;--mintbg:rgba(46,255,160,.07);
   --violet:#b47aff;--violetbg:rgba(180,122,255,.07);
   --txt:#d8e0f4;--txt2:#8892bc;--txt3:#4a5278;--txt4:#272c42;
-  --mono:'JetBrains Mono',monospace;
-  --sans:'Syne',sans-serif;
+  --mono:'JetBrains Mono','Cascadia Code','Fira Code','Consolas','Courier New',monospace;
+  --sans:'Syne','Inter','Segoe UI','Helvetica Neue',system-ui,sans-serif;
   --nav:58px;--side:252px;--top:50px;--r:8px;--rl:14px;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
@@ -675,7 +676,7 @@ code{font-family:var(--mono);font-size:11px;background:rgba(184,255,71,.07);colo
       <button class="btn btn-ghost btn-xs" onclick="clearBpLog()">&#10005; Clear</button>
     </div>
     <div class="term-bd" id="bp-log" style="max-height:320px">
-      <div class="ll"><span class="lm" style="color:var(--txt4)">GhostPin Enterprise ready &mdash; configure target and click Inject</span></div>
+      <div class="ll"><span class="lm" style="color:var(--txt4)">GhostPin ready &mdash; configure target and click Inject</span></div>
     </div>
   </div>
 </div>
@@ -1012,7 +1013,7 @@ code{font-family:var(--mono);font-size:11px;background:rgba(184,255,71,.07);colo
 <div class="page" id="pg-settings">
   <div class="ph">
     <div class="pt">Platform <b>Settings</b></div>
-    <div class="ps">Configure GhostPin Enterprise preferences &amp; behavior</div>
+    <div class="ps">Configure GhostPin preferences &amp; behavior</div>
   </div>
   <div class="g2">
     <div class="card">
@@ -1555,8 +1556,7 @@ code{font-family:var(--mono);font-size:11px;background:rgba(184,255,71,.07);colo
 
 <script>
 // ================================================================
-// GHOSTPIN ENTERPRISE v4.1 — Frontend Engine
-// Fixed navigation, improved features, enterprise UI
+// GHOSTPIN v5.0 — Frontend Engine
 // ================================================================
 
 // ── State ──────────────────────────────────────────────────────
@@ -2830,7 +2830,7 @@ function generateReport() {
   if (!app) { toast('Enter app name', 'warn'); return; }
   document.getElementById('rep-status').textContent = 'Generating...';
   api('/api/report/generate', 'POST', {
-    appName: app, platform: plat, tester: tester || 'GhostPin Enterprise',
+    appName: app, platform: plat, tester: tester || 'GhostPin',
     sessionId: sessId, vulnFindings: SCAN_RESULT ? SCAN_RESULT.findings||[] : [],
     analysis: SCAN_RESULT || {}
   }).then(function(d) {

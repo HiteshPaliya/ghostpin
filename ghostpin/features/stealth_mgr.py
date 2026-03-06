@@ -1,5 +1,5 @@
 """
-GhostPin Enterprise v5 - Stealth Evasion Core (hluda-server)
+GhostPin v5 - Stealth Evasion Core (hluda-server)
 Pulls V8-less, randomized hluda-server variants from hzzheyang/strongR-frida-android
 to bypass Promon, DexGuard, and kernel-level anti-cheats.
 """

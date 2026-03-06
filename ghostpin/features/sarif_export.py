@@ -70,7 +70,7 @@ def to_sarif(findings: list, app_name: str = 'GhostPin Scan', apk_path: str = ''
         'runs': [{
             'tool': {
                 'driver': {
-                    'name': 'GhostPin Enterprise',
+                    'name': 'GhostPin',
                     'version': '5.0.0',
                     'informationUri': 'https://github.com/ghostpin/ghostpin',
                     'rules': list(rules_seen.values()),
@@ -93,7 +93,7 @@ def to_json_report(findings: list, app_name: str, scan_meta: dict = None) -> dic
         severity_counts[sev] = severity_counts.get(sev, 0) + 1
     return {
         'schema_version': '1.0',
-        'tool': 'GhostPin Enterprise v5.0',
+        'tool': 'GhostPin v5.0',
         'generated_at': datetime.utcnow().isoformat() + 'Z',
         'target': {
             'app_name': app_name,

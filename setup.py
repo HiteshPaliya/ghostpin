@@ -1,5 +1,5 @@
 """
-GhostPin Enterprise v5.0 — setup.py
+GhostPin v5.0 — setup.py
 """
 from setuptools import setup, find_packages
 

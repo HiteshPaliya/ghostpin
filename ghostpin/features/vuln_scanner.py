@@ -1,5 +1,5 @@
 """
-GhostPin Enterprise v5.0 — Feature: Vulnerability Scanner (SAST)
+GhostPin v5.0 — Feature: Vulnerability Scanner (SAST)
 Static analysis of APK/IPA for hardcoded secrets, weak crypto, misconfigurations.
 """
 import re

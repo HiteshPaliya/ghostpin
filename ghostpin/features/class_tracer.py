@@ -1,5 +1,5 @@
 """
-GhostPin Enterprise v5.0 — Feature: Class Dump & Method Tracer
+GhostPin v5.0 — Feature: Class Dump & Method Tracer
 Live Frida-based class enumeration and method hooking for runtime RE.
 """
 

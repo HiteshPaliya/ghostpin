@@ -1,5 +1,5 @@
 """
-GhostPin Enterprise v5 - Decompiler Engine
+GhostPin v5 - Decompiler Engine
 Integrates JADX to decompile Android APKs natively for in-UI source code viewing.
 """
 import os

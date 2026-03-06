@@ -1,4 +1,4 @@
-// GhostPin Enterprise v5.0 — SafetyNet & Play Integrity Bypass
+// GhostPin v5.0 — SafetyNet & Play Integrity Bypass
 // Hooks Google's attestation chain to spoof device integrity results
 
 Java.perform(function() {

@@ -1,5 +1,5 @@
 """
-GhostPin Enterprise v5 - Mitmproxy Addon for API Discovery
+GhostPin v5 - Mitmproxy Addon for API Discovery
 Ran natively via `mitmdump -s mitm_addon.py`.
 Parses live traffic, WebSockets, and GraphQL, feeding it directly into the API Map.
 """

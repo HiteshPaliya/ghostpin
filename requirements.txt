@@ -1,4 +1,4 @@
-# GhostPin Enterprise v5.0 — Python Dependencies
+# GhostPin v5.0 — Python Dependencies
 # Core
 flask>=2.0
 click>=8.0

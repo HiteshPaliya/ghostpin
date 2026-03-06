@@ -1,5 +1,5 @@
 """
-GhostPin Enterprise v5.0 — Feature: Intent Fuzzer
+GhostPin v5.0 — Feature: Intent Fuzzer
 Enumerates exported Android components and fires crafted Intents via ADB.
 """
 

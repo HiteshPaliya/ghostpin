@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-GhostPin Enterprise v5.0 — CLI Entry Point
+GhostPin v5.0 — CLI Entry Point
 Click-based CLI: ghostpin start|check|install-frida|version
 """
 import os, sys, subprocess
@@ -52,7 +52,7 @@ def check_tool(name):
 @click.group(invoke_without_command=True)
 @click.pass_context
 def cli(ctx):
-    """GhostPin Enterprise — Mobile Security Testing Platform"""
+    """GhostPin — Mobile Security Testing Platform"""
     if ctx.invoked_subcommand is None:
         ctx.invoke(start)
 
@@ -62,9 +62,9 @@ def cli(ctx):
 @click.option('--no-browser', is_flag=True, help='Skip auto-opening browser')
 @click.option('--debug', is_flag=True, hidden=True)
 def start(port, host, no_browser, debug):
-    """Start GhostPin Enterprise web server"""
+    """Start GhostPin web server"""
     banner()
-    click.echo(f'{LIME}{BOLD}* Starting GhostPin Enterprise v5.0{RESET}\n')
+    click.echo(f'{LIME}{BOLD}* Starting GhostPin v5.0{RESET}\n')
 
     # Ensure Flask is installed
     check_pip_dep('flask')
@@ -129,7 +129,7 @@ def install_frida():
 def version():
     """Show GhostPin version"""
     from ghostpin import __version__, __codename__
-    click.echo(f'GhostPin Enterprise v{__version__} ({__codename__})')
+    click.echo(f'GhostPin v{__version__} ({__codename__})')
 
 if __name__ == '__main__':
     cli()

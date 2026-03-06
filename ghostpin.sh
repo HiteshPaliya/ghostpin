@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ╔═══════════════════════════════════════════════════════════╗
-# ║          GhostPin Enterprise — Setup & Launcher           ║
+# ║          GhostPin — Setup & Launcher           ║
 # ║   SSL Pinning Bypass Platform · Enterprise Edition v4.0   ║
 # ╚═══════════════════════════════════════════════════════════╝
 
@@ -87,7 +87,7 @@ cmd_check() {
 
 cmd_start() {
   banner
-  echo -e "${LIME}${BOLD}◆ Starting GhostPin Enterprise${RESET}"
+  echo -e "${LIME}${BOLD}◆ Starting GhostPin${RESET}"
   echo ""
 
   check_python
@@ -128,7 +128,7 @@ cmd_install_frida_tools() {
 cmd_help() {
   banner
   echo -e "${BOLD}Usage:${RESET} ./ghostpin.sh [command]\n"
-  echo -e "  ${LIME}start${RESET}         Start GhostPin Enterprise server"
+  echo -e "  ${LIME}start${RESET}         Start GhostPin server"
   echo -e "  ${LIME}check${RESET}         Check dependencies"
   echo -e "  ${LIME}install-frida${RESET} Install Frida + Objection + apk-mitm"
   echo -e "  ${LIME}help${RESET}          Show this help"

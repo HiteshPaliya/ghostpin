@@ -1,5 +1,5 @@
 """
-GhostPin Enterprise v5.0 — Feature: Runtime API Monitor
+GhostPin v5.0 — Feature: Runtime API Monitor
 Builds and injects combined Frida scripts to monitor crypto/file/network API calls.
 """
 

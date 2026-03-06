@@ -1,4 +1,4 @@
-// GhostPin Enterprise v5.0 — Gaming & Anti-Cheat Profiler
+// GhostPin v5.0 — Gaming & Anti-Cheat Profiler
 // Targets Unity IL2CPP games with EasyAntiCheat, BattlEye, GameGuard hooks
 
 (function() {

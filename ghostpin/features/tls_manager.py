@@ -27,7 +27,7 @@ def generate_self_signed_cert():
         key = rsa.generate_private_key(public_exponent=65537, key_size=2048, backend=default_backend())
         subject = x509.Name([
             x509.NameAttribute(NameOID.COUNTRY_NAME, 'US'),
-            x509.NameAttribute(NameOID.ORGANIZATION_NAME, 'GhostPin Enterprise'),
+            x509.NameAttribute(NameOID.ORGANIZATION_NAME, 'GhostPin'),
             x509.NameAttribute(NameOID.COMMON_NAME, 'localhost'),
         ])
         now = datetime.datetime.utcnow()
@@ -59,7 +59,7 @@ def generate_self_signed_cert():
             'openssl', 'req', '-x509', '-newkey', 'rsa:2048',
             '-keyout', str(KEY_FILE), '-out', str(CERT_FILE),
             '-days', '3650', '-nodes', '-subj',
-            '/C=US/O=GhostPin Enterprise/CN=localhost',
+            '/C=US/O=GhostPin/CN=localhost',
         ], check=True, capture_output=True)
         print(f'[GhostPin] TLS cert generated via openssl: {CERT_FILE}')
 

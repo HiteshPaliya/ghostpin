@@ -1,5 +1,5 @@
 """
-GhostPin Enterprise v5 - Automatic API Endpoint Discovery
+GhostPin v5 - Automatic API Endpoint Discovery
 Combines static AST string extraction from the APK (via vuln_scanner) and dynamic traffic observation (via mitmproxy/Frida)
 to automatically build a complete map of the application's backend infrastructure.
 """

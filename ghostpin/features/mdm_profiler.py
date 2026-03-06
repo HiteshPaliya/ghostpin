@@ -1,5 +1,5 @@
 """
-GhostPin Enterprise v5.0 — Feature: MDM & EMM Profiler
+GhostPin v5.0 — Feature: MDM & EMM Profiler
 Detects Mobile Device Management enrollment, policies, and vendor-specific DPC apps.
 """
 

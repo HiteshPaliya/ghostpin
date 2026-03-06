@@ -1,6 +1,6 @@
-# GhostPin Enterprise v5.0 — Complete Technical Documentation
+# GhostPin v5.0 — Complete Technical Documentation
 
-> **The Definitive Guide to Mobile Application Security Testing with GhostPin Enterprise**
+> **The Definitive Guide to Mobile Application Security Testing with GhostPin**
 >
 > Version 5.0.0 *Phantom* · Last Updated: March 2026
 
@@ -23,7 +23,7 @@
 
 ## What GhostPin Does
 
-GhostPin Enterprise is an **all-in-one mobile application security testing platform** that solves the single most significant barrier in mobile penetration testing: **SSL/TLS certificate pinning**. It wraps Frida, Objection, mitmproxy, JADX, and 17 purpose-built bypass scripts into a unified web-based interface, then layers 10 additional security research pillars on top — from static analysis and Intent fuzzing to coverage-guided fuzzing and stealth evasion.
+GhostPin is an **all-in-one mobile application security testing platform** that solves the single most significant barrier in mobile penetration testing: **SSL/TLS certificate pinning**. It wraps Frida, Objection, mitmproxy, JADX, and 17 purpose-built bypass scripts into a unified web-based interface, then layers 10 additional security research pillars on top — from static analysis and Intent fuzzing to coverage-guided fuzzing and stealth evasion.
 
 **The problem it solves:** A typical mobile pentest requires a pentester to juggle 5–10 separate command-line tools, each with its own syntax, output format, and failure modes. GhostPin unifies them into a single browser-based dashboard with live streaming output, one-click actions, and automated report generation.
 
@@ -844,5 +844,5 @@ adb shell settings get global http_proxy
 
 ---
 
-*GhostPin Enterprise v5.0 Phantom — For authorized penetration testing only.*
+*GhostPin v5.0 Phantom — For authorized penetration testing only.*
 *© 2026 GhostPin Security. All rights reserved.*
