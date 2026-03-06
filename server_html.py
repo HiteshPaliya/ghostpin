@@ -3488,7 +3488,8 @@ function deployStealthFrida() {
     
     let logs = document.getElementById('frida-logs');
     logs.style.display = 'block';
-    logs.innerHTML = '🛡️ Requesting Stealth hluda-server deployment...\n';
+    logs.innerHTML = `🛡️ Requesting Stealth hluda-server deployment...
+`;
     
     fetch('/api/frida/stealth', {
         method: 'POST',
@@ -3496,9 +3497,13 @@ function deployStealthFrida() {
         body: JSON.stringify({serial: window.ACTIVE_SERIAL})
     }).then(r => r.json()).then(res => {
         if(res.ok) {
-            logs.innerHTML += '\n✅ STEALTH DEPLOYED: ' + res.binary_name + '\n';
+            logs.innerHTML += `
+✅ STEALTH DEPLOYED: ${res.binary_name}
+`;
         } else {
-            logs.innerHTML += '\n❌ ERROR: ' + res.error + '\n';
+            logs.innerHTML += `
+❌ ERROR: ${res.error}
+`;
         }
     });
 }
