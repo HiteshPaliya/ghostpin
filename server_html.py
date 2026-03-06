@@ -794,7 +794,11 @@ code{font-family:var(--mono);font-size:11px;background:rgba(184,255,71,.07);colo
       var MONACO_INSTANCE = null;
       require.config({ paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.38.0/min/vs' }});
       require(['vs/editor/editor.main'], function() {
-        var defaultVal = '// Write your Frida script here\nJava.perform(function() {\n  var log = function(m) { send(\'[Custom] \' + m); };\n  // Your hooks here...\n});';
+        var defaultVal = `// Write your Frida script here
+Java.perform(function() {
+  var log = function(m) { send('[Custom] ' + m); };
+  // Your hooks here...
+});`;
         MONACO_INSTANCE = monaco.editor.create(document.getElementById('monaco-container'), {
           value: defaultVal,
           language: 'javascript',
@@ -3095,11 +3099,14 @@ function loadChecklistTypes() {
     el.innerHTML = Object.keys(d).map(function(k) {
       var cl = d[k];
       var riskCol = cl.risk==='CRITICAL'?'var(--red)':cl.risk==='HIGH'?'var(--amber)':'var(--cyan)';
-      return '<div class="sc" style="cursor:pointer;text-align:center" onclick="openChecklist(''+k+'','+JSON.stringify(cl).replace(/"/g,'&quot;')+')">' +
-        '<div style="font-size:28px;margin-bottom:8px">'+esc(cl.icon||'📱')+'</div>' +
-        '<div class="sc-lbl" style="font-weight:700;color:var(--txt2)">' + esc(cl.name) + '</div>' +
-        '<div style="font-size:10px;margin-top:4px;color:'+riskCol+'">'+esc(cl.risk||'')+'</div>' +
-        '</div>';
+      var clJson = JSON.stringify(cl).replace(/"/g, '&quot;');
+      return `
+        <div class="sc" style="cursor:pointer;text-align:center" onclick="openChecklist('${k}', ${clJson})">
+          <div style="font-size:28px;margin-bottom:8px">${esc(cl.icon||'📱')}</div>
+          <div class="sc-lbl" style="font-weight:700;color:var(--txt2)">${esc(cl.name)}</div>
+          <div style="font-size:10px;margin-top:4px;color:${riskCol}">${esc(cl.risk||'')}</div>
+        </div>
+      `;
     }).join('');
   });
 }
@@ -3109,14 +3116,18 @@ function openChecklist(type, cl) {
   document.getElementById('checklist-name').textContent = cl.icon + ' ' + cl.name;
   var steps = cl.steps||[];
   document.getElementById('checklist-steps').innerHTML = steps.map(function(s,i) {
-    return '<div id="cls-'+s.id+'" style="display:flex;align-items:flex-start;gap:12px;padding:12px 14px;border-bottom:1px solid var(--rim)">' +
-      '<div style="width:24px;height:24px;border-radius:50%;border:2px solid var(--rim2);display:flex;align-items:center;justify-content:center;font-size:11px;cursor:pointer;flex-shrink:0" id="clc-'+s.id+'" onclick="toggleCLStep(''+s.id+'')">' +
-      '<span id="clx-'+s.id+'"> </span></div>' +
-      '<div style="flex:1">' +
-      '<div style="font-size:13px;font-weight:700;color:var(--txt)">' + esc(s.title) + '</div>' +
-      '<div style="font-size:11px;color:var(--txt3);margin-top:2px">' + esc(s.why||'') + '</div>' +
-      (s.page ? '<button class="btn btn-ghost btn-xs" style="margin-top:6px" onclick="go(''+s.page+'')">→ Open Page</button>' : '') +
-      '</div></div>';
+    return `
+      <div id="cls-${s.id}" style="display:flex;align-items:flex-start;gap:12px;padding:12px 14px;border-bottom:1px solid var(--rim)">
+        <div style="width:24px;height:24px;border-radius:50%;border:2px solid var(--rim2);display:flex;align-items:center;justify-content:center;font-size:11px;cursor:pointer;flex-shrink:0" id="clc-${s.id}" onclick="toggleCLStep('${s.id}')">
+          <span id="clx-${s.id}"> </span>
+        </div>
+        <div style="flex:1">
+          <div style="font-size:13px;font-weight:700;color:var(--txt)">${esc(s.title)}</div>
+          <div style="font-size:11px;color:var(--txt3);margin-top:2px">${esc(s.why||'')}</div>
+          ${s.page ? `<button class="btn btn-ghost btn-xs" style="margin-top:6px" onclick="go('${s.page}')">→ Open Page</button>` : ''}
+        </div>
+      </div>
+    `;
   }).join('');
 }
 function toggleCLStep(id) {
@@ -3135,13 +3146,19 @@ function loadWorkspaces() {
     var el = document.getElementById('ws-list');
     if (!d || !d.length) { el.innerHTML='<div class="empty" style="padding:20px"><div class="empty-ic">💼</div><div class="empty-tt">No workspaces</div></div>'; return; }
     el.innerHTML = d.map(function(w) {
-      return '<div class="ssi" style="cursor:pointer" onclick="openWorkspaceByPkg(''+esc(w.package)+'')">' +
-        '<div class="ssi-ic">💼</div>' +
-        '<div style="flex:1;min-width:0"><div class="ssi-nm">'+esc(w.package)+'</div>' +
-        '<div class="ssi-mt">'+(w.last_used?new Date(w.last_used).toLocaleDateString():'')+
-        (w.has_scan?' · scan ✓':'')+
-        (w.has_cve?' · CVE ✓':'')+'</div></div>' +
-        '</div>';
+      return `
+        <div class="ssi" style="cursor:pointer" onclick="openWorkspaceByPkg('${esc(w.package)}')">
+          <div class="ssi-ic">💼</div>
+          <div style="flex:1;min-width:0">
+            <div class="ssi-nm">${esc(w.package)}</div>
+            <div class="ssi-mt">
+              ${w.last_used ? new Date(w.last_used).toLocaleDateString() : ''}
+              ${w.has_scan ? ' · scan ✓' : ''}
+              ${w.has_cve ? ' · CVE ✓' : ''}
+            </div>
+          </div>
+        </div>
+      `;
     }).join('');
   });
 }
